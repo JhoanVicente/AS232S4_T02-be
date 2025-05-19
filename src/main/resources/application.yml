@@ -1,0 +1,35 @@
+# Configuración de la base de datos Oracle
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: C##db_lospinos
+    password: lospinos123
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.Oracle12cDialect
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    time-zone: America/Lima
+
+# Configuración del servidor
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Configuración de Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
