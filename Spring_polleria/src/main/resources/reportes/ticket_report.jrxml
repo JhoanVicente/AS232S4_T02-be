@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="ReservaDetalleReport"
+              language="java"
+              pageWidth="595"
+              pageHeight="842"
+              columnWidth="515"
+              leftMargin="40"
+              rightMargin="40"
+              topMargin="40"
+              bottomMargin="40">
+
+    <!-- Parámetros -->
+    <parameter name="reservaId" class="java.lang.Long"/>
+
+    <!-- Encabezado de columna -->
+    <columnHeader>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Fecha Reserva"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Hora Reserva"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="200" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Número de Personas"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Descripción"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="400" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Estado"]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnHeader>
+
+    <!-- Detalles de las reservas -->
+    <detail>
+        <band height="20">
+
+            <textField>
+                <reportElement x="200" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{numeroPersonas}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="400" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- Resumen de la reserva -->
+    <summary>
+        <band height="40">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Nombre del Cliente:"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="0" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$F{customer.name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="20" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Número de Celular:"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="20" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$F{numeroCelular}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="40" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Estado de la Reserva:"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="40" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+
+    <!-- Información adicional si es necesario -->
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA["Página: " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+</jasperReport>
