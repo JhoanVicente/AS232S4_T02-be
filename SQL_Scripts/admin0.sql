@@ -1,8 +1,8 @@
 -- ========================================
--- Eliminar usuarios si ya existen (evita errores de duplicidad)
+-- Eliminar usuarios si ya existen
 -- ========================================
 BEGIN
-  EXECUTE IMMEDIATE 'DROP USER jhoan CASCADE';
+  EXECUTE IMMEDIATE 'DROP USER developer1 CASCADE';
 EXCEPTION
   WHEN OTHERS THEN
     IF SQLCODE != -01918 THEN
@@ -12,7 +12,7 @@ END;
 /
 
 BEGIN
-  EXECUTE IMMEDIATE 'DROP USER angie CASCADE';
+  EXECUTE IMMEDIATE 'DROP USER developer2 CASCADE';
 EXCEPTION
   WHEN OTHERS THEN
     IF SQLCODE != -01918 THEN
@@ -24,19 +24,19 @@ END;
 -- ========================================
 -- Crear usuarios con contraseñas seguras
 -- ========================================
-CREATE USER jhoan IDENTIFIED BY "Lospinos1234";
-CREATE USER angie IDENTIFIED BY "Lospinos1234";
+CREATE USER developer1 IDENTIFIED BY "Lospinos1234";
+CREATE USER developer2 IDENTIFIED BY "Lospinos1234";
 
 -- ========================================
--- Otorgar privilegios y cuotas de almacenamiento a jhoan
+-- Otorgar privilegios a developer1
 -- ========================================
-GRANT CONNECT, RESOURCE TO jhoan;
-GRANT CREATE TABLE, CREATE VIEW, CREATE SEQUENCE, CREATE PROCEDURE, CREATE TRIGGER TO jhoan;
-ALTER USER jhoan QUOTA UNLIMITED ON DATA;
+GRANT CONNECT, RESOURCE TO developer1;
+GRANT CREATE TABLE, CREATE VIEW, CREATE SEQUENCE, CREATE PROCEDURE, CREATE TRIGGER TO developer1;
+ALTER USER developer1 QUOTA UNLIMITED ON DATA;
 
 -- ========================================
--- Otorgar privilegios y cuotas de almacenamiento a angie
+-- Otorgar privilegios a developer2
 -- ========================================
-GRANT CONNECT, RESOURCE TO angie;
-GRANT CREATE TABLE, CREATE VIEW, CREATE SEQUENCE, CREATE PROCEDURE, CREATE TRIGGER TO angie;
-ALTER USER angie QUOTA UNLIMITED ON DATA;
+GRANT CONNECT, RESOURCE TO developer2;
+GRANT CREATE TABLE, CREATE VIEW, CREATE SEQUENCE, CREATE PROCEDURE, CREATE TRIGGER TO developer2;
+ALTER USER developer2 QUOTA UNLIMITED ON DATA;

@@ -1,6 +1,8 @@
 -- ========================================
--- Crear tabla de clientes
+-- Crear tablas y secuencias
 -- ========================================
+
+-- Tabla customer
 CREATE TABLE customer (
     id NUMBER PRIMARY KEY,
     name VARCHAR2(100) NOT NULL,
@@ -15,9 +17,7 @@ CREATE TABLE customer (
     activo NUMBER(1) DEFAULT 1
 );
 
--- ========================================
--- Crear tabla de sugerencias
--- ========================================
+-- Tabla Suggestion
 CREATE TABLE Suggestion (
     id NUMBER PRIMARY KEY,
     customer_id NUMBER,
@@ -27,9 +27,7 @@ CREATE TABLE Suggestion (
     CONSTRAINT fk_customer_suggestion FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
--- ========================================
--- Crear tabla de reservas
--- ========================================
+-- Tabla reserve
 CREATE TABLE reserve (
     id NUMBER PRIMARY KEY,
     customer_id NUMBER,
@@ -42,9 +40,7 @@ CREATE TABLE reserve (
     CONSTRAINT fk_customer_reserve FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
--- ========================================
--- Crear tabla detalle de reserva
--- ========================================
+-- Tabla detail_reserve
 CREATE TABLE detail_reserve (
     id NUMBER PRIMARY KEY,
     reserve_id NUMBER,
@@ -53,26 +49,21 @@ CREATE TABLE detail_reserve (
     CONSTRAINT fk_reserve FOREIGN KEY (reserve_id) REFERENCES reserve(id)
 );
 
--- ========================================
--- Crear secuencias para IDs automáticos
--- ========================================
+-- Secuencias
 CREATE SEQUENCE seq_customer START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE seq_suggestion START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE seq_reserve START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE seq_detail_reserve START WITH 1 INCREMENT BY 1;
 
--- ========================================
--- Conectado como angie para otorgar permisos a jhoan
--- ========================================
-GRANT SELECT, INSERT, UPDATE, DELETE ON customer TO jhoan;
-GRANT SELECT, INSERT, UPDATE, DELETE ON Suggestion TO jhoan;
-GRANT SELECT, INSERT, UPDATE, DELETE ON reserve TO jhoan;
-GRANT SELECT, INSERT, UPDATE, DELETE ON detail_reserve TO jhoan;
+-- Permisos a developer2
+GRANT SELECT, INSERT, UPDATE, DELETE ON customer TO developer2;
+GRANT SELECT, INSERT, UPDATE, DELETE ON Suggestion TO developer2;
+GRANT SELECT, INSERT, UPDATE, DELETE ON reserve TO developer2;
+GRANT SELECT, INSERT, UPDATE, DELETE ON detail_reserve TO developer2;
 
--- ========================================
--- Insertar algunos datos de ejemplo
--- ========================================
+-- Datos de ejemplo
 INSERT INTO customer (id, name, lastName, documentType, document, phone, mail, address) 
 VALUES (seq_customer.NEXTVAL, 'Juan', 'Pérez', 'DNI', '12345678', '987654321', 'juan@example.com', 'Av. Principal 123');
+
 INSERT INTO customer (id, name, lastName, documentType, document, phone, mail, address) 
 VALUES (seq_customer.NEXTVAL, 'María', 'López', 'DNI', '87654321', '123456789', 'maria@example.com', 'Calle Secundaria 456');
