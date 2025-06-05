@@ -6,3 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# Ignorar JDK y archivos binarios grandes
+Spring_polleria/jdk-17.0.2/
+Spring_polleria/*.tar.gz
