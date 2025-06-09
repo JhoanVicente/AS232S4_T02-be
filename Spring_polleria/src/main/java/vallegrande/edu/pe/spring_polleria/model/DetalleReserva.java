@@ -18,7 +18,8 @@ import java.time.LocalTime;
 public class DetalleReserva {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detalle_reserva_seq")
+    @SequenceGenerator(name = "detalle_reserva_seq", sequenceName = "seq_detail_reserve", allocationSize = 1)
     private Long id;
 
     @ManyToOne
@@ -36,7 +37,7 @@ public class DetalleReserva {
     private int numeroPersonas;
 
     @Column(name = "descripcion", nullable = false)
-    private String descripcion;
+    private String descripcion = "Sin observaciones"; // Valor por defecto
 
     @Column(name = "status", nullable = false)
     private String status = "in process";

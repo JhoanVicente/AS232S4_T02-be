@@ -8,13 +8,14 @@ import java.math.BigDecimal;
 public class SaleDetail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sale_detail_seq")
+    @SequenceGenerator(name = "sale_detail_seq", sequenceName = "seq_sale_detail", allocationSize = 1)
     @Column(name = "id_detail")
     private Long idDetail;
 
     @Column(name = "Amount_products", nullable = false)
     private Integer amountProducts;
-
+    
     @Column(name = "Descripcion", nullable = false, length = 90)
     private String descripcion;
 

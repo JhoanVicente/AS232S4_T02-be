@@ -23,8 +23,10 @@ import java.util.List;
 public class Reserva {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserva_seq")
+    @SequenceGenerator(name = "reserva_seq", sequenceName = "seq_reserve", allocationSize = 1)
     private Long id;
+    
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -33,7 +35,7 @@ public class Reserva {
     @JsonIgnore
     private Customer customer;
     @Column(name = "fecha_registro", nullable = false)
-    private LocalDate fechaRegistro;
+    private LocalDate fechaRegistro = LocalDate.now(); // Valor por defecto: fecha actual
 
     @Column(name = "numero_celular", nullable = false)
     private String numeroCelular;

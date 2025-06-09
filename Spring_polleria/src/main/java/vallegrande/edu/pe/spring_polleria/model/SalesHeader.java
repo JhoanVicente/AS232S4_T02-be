@@ -8,13 +8,14 @@ import java.util.Date;
 public class SalesHeader {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sales_header_seq")
+    @SequenceGenerator(name = "sales_header_seq", sequenceName = "seq_sales_header", allocationSize = 1)
     @Column(name = "Code_header")
     private Long codeHeader;
 
     @Column(name = "Ruc", nullable = false, length = 11)
     private String ruc = "20606232544";
-
+    
     @Column(name = "Serie_header", nullable = false, length = 4)
     private String serieHeader = "S003";
 

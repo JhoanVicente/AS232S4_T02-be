@@ -2,12 +2,14 @@ package vallegrande.edu.pe.spring_polleria.model;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "Products")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
+    @SequenceGenerator(name = "product_seq", sequenceName = "seq_products", allocationSize = 1)
     private Long id_products;
 
     @Column(name = "Code_products", unique = true, nullable = false)

@@ -20,7 +20,8 @@ import lombok.AllArgsConstructor;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
+    @SequenceGenerator(name = "customer_seq", sequenceName = "seq_customer", allocationSize = 1)
     private Long id;
 
     @Column(name = "name_customer", nullable = false)
@@ -54,7 +55,7 @@ public class Customer {
     private String role = "CLIENTE";
 
     @Column(name = "activo", nullable = false)
-    private Integer activo ;
+    private Integer activo = 1;
 
     // Getters and Setters (Generados por Lombok)
 }
